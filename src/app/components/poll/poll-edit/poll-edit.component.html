@@ -1,0 +1,91 @@
+<div class="poll-edit-container" *ngIf="poll">
+  <h2><i class="fas fa-edit"></i> Anket Düzenle: {{ poll.title }}</h2>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <i class="fas fa-exclamation-triangle"></i> {{ errorMessage }}
+  </div>
+  <div *ngIf="successMessage" class="success-message">
+    <i class="fas fa-check-circle"></i> {{ successMessage }}
+  </div>
+
+  <form (ngSubmit)="savePoll()" class="poll-form">
+    <label for="title">
+      <i class="fas fa-heading"></i> Başlık:
+    </label>
+    <input id="title" [(ngModel)]="poll.title" name="title" required />
+
+    <label for="description">
+      <i class="fas fa-align-left"></i> Açıklama:
+    </label>
+    <textarea id="description" [(ngModel)]="poll.description" name="description"></textarea>
+
+    <label class="checkbox-label">
+      <input type="checkbox" [(ngModel)]="poll.onlyLoggedUsersCanVote" name="onlyLoggedUsersCanVote" />
+      <i class="fas fa-user-lock"></i> Sadece giriş yapmış kullanıcılar oy kullanabilir
+    </label>
+
+    <button type="submit"><i class="fas fa-save"></i> Kaydet</button>
+  </form>
+
+  <hr />
+
+  <h3><i class="fas fa-tasks"></i> Sorular</h3>
+
+  <!-- Yeni soru ekleme -->
+  <div class="add-question-form">
+    <input type="text" placeholder="Yeni soru metni" [(ngModel)]="newQuestionText" name="newQuestionText" />
+    <select [(ngModel)]="newQuestionType" name="newQuestionType">
+      <option value="SINGLE_CHOICE">Tek Seçmeli</option>
+      <option value="MULTIPLE_CHOICE">Çoklu Seçimli</option>
+    </select>
+    <button (click)="addQuestion()">
+      <i class="fas fa-plus-circle"></i> Soru Ekle
+    </button>
+  </div>
+
+  <!-- Soru listesi -->
+  <ul class="question-list">
+    <li *ngFor="let question of questions">
+      <div class="question-item">
+        <span>
+          <i class="fas fa-chevron-right"></i> {{ question.text }}
+          <small class="question-type-tag">
+            {{ question.type === 'SINGLE_CHOICE' ? 'Tek Seçmeli' : 'Çoklu Seçimli' }}
+          </small>
+        </span>
+        <div class="question-actions">
+          <button type="button" (click)="openEditSheet(question)">
+            <i class="fas fa-edit"></i> Düzenle
+          </button>
+          <button type="button" [routerLink]="['/question', question.id, 'options']">
+            <i class="fas fa-list-ul"></i> Seçenekleri Görüntüle
+          </button>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <a [routerLink]="['/my-polls']" class="back-link">
+    <i class="fas fa-arrow-left"></i> Anketlerime Geri Dön
+  </a>
+
+  <!-- Düzenleme Sheet'i -->
+  <div class="edit-sheet" *ngIf="editedQuestion">
+    <div class="sheet-content">
+      <h4><i class="fas fa-pen"></i> Soruyu Düzenle</h4>
+      <input [(ngModel)]="editText" name="editText" placeholder="Soru metni" />
+      <select [(ngModel)]="editType" name="editType">
+        <option value="SINGLE_CHOICE">Tek Seçmeli</option>
+        <option value="MULTIPLE_CHOICE">Çoklu Seçimli</option>
+      </select>
+      <div class="sheet-buttons">
+        <button (click)="updateQuestion()">
+          <i class="fas fa-check"></i> Güncelle
+        </button>
+        <button (click)="cancelEditing()">
+          <i class="fas fa-times"></i> Kapat
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+.poll-create-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.poll-create-container h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.poll-create-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.poll-create-container label {
+  font-weight: 600;
+  color: #444;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.poll-create-container input[type="text"],
+.poll-create-container textarea {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.poll-create-container input[type="text"]:focus,
+.poll-create-container textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.poll-create-container textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.poll-create-container input[type="checkbox"] {
+  margin-right: 8px;
+  accent-color: #007bff;
+}
+
+.poll-create-container button {
+  padding: 10px 16px;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.poll-create-container button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  margin-top: 15px;
+  color: #dc3545;
+  background-color: #f8d7da;
+  padding: 10px 14px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+@media (max-width: 600px) {
+  .poll-create-container {
+    margin: 20px;
+    padding: 16px;
+  }
+
+  .poll-create-container h2 {
+    font-size: 20px;
+  }
+}
+

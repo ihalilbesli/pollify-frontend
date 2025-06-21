@@ -1,0 +1,52 @@
+<div class="login-container">
+  <h2>Giriş Yap</h2>
+
+  <form (ngSubmit)="login()" #loginForm="ngForm">
+    <div class="input-group">
+      <label for="email">Email:</label>
+      <div class="input-icon-wrapper">
+        <i class="fas fa-envelope"></i>
+        <input
+          type="email"
+          id="email"
+          required
+          [(ngModel)]="email"
+          name="email"
+          #emailInput="ngModel"
+        />
+      </div>
+      <div *ngIf="emailInput.invalid && emailInput.touched" class="error">
+        Geçerli bir email giriniz.
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label for="password">Şifre:</label>
+      <div class="input-icon-wrapper">
+        <i class="fas fa-lock"></i>
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          id="password"
+          required
+          [(ngModel)]="password"
+          name="password"
+          #passwordInput="ngModel"
+        />
+        <i
+          class="toggle-password fas"
+          [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
+          (click)="togglePasswordVisibility()"
+        ></i>
+      </div>
+      <div *ngIf="passwordInput.invalid && passwordInput.touched" class="error">
+        Şifre boş olamaz.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid">Giriş Yap</button>
+
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+  </form>
+</div>

@@ -1,0 +1,38 @@
+<div class="poll-detail-container" *ngIf="poll; else loadingOrError">
+  <h2><i class="fas fa-poll"></i> {{ poll.title }}</h2>
+  <p class="description">
+    <i class="fas fa-align-left"></i> {{ poll.description }}
+  </p>
+
+  <ul class="poll-info-list">
+    <li><i class="fas fa-id-badge"></i> <strong>Anket ID:</strong> {{ poll.id }}</li>
+    <li><i class="fas fa-question-circle"></i> <strong>Soru Sayısı:</strong> {{ poll.questions.length }}</li>
+    <li><i class="fas fa-check-circle"></i> <strong>Aktif:</strong> {{ poll.active ? 'Evet' : 'Hayır' }}</li>
+    <li><i class="fas fa-user-lock"></i> <strong>Giriş Zorunluluğu:</strong> {{ poll.onlyLoggedUsersCanVote ? 'Evet' : 'Hayır' }}</li>
+  </ul>
+
+  <div *ngIf="poll.onlyLoggedUsersCanVote && !isLoggedIn" class="warning-message">
+    <i class="fas fa-exclamation-triangle"></i> Bu ankete oy vermek için giriş yapmanız gerekmektedir.
+  </div>
+
+  <div *ngIf="hasVoted" class="info-message">
+    <i class="fas fa-info-circle"></i> Bu ankete daha önce katıldınız.
+  </div>
+
+  <button [disabled]="!canStartPoll()" (click)="startPoll()">
+    <i class="fas fa-play"></i> Başla
+  </button>
+</div>
+
+<ng-template #loadingOrError>
+  <div *ngIf="errorMessage; else loading">
+    <p class="error-message">
+      <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+    </p>
+  </div>
+  <ng-template #loading>
+    <p class="loading-message">
+      <i class="fas fa-spinner fa-spin"></i> Yükleniyor...
+    </p>
+  </ng-template>
+</ng-template>

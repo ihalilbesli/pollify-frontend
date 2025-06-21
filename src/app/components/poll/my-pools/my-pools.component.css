@@ -1,0 +1,119 @@
+.my-polls-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.my-polls-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.poll-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.poll-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  transition: box-shadow 0.3s;
+  flex-wrap: wrap;
+}
+
+.poll-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.poll-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: #333;
+  flex: 1 1 auto;
+  min-width: 200px;
+}
+
+.poll-title a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.poll-title a:hover {
+  text-decoration: underline;
+}
+
+.poll-item button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.poll-item button:hover {
+  background-color: #b52a37;
+}
+
+.error-message,
+.empty-message {
+  margin-top: 20px;
+  color: #d9534f;
+  background-color: #f8d7da;
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+
+.empty-message {
+  color: #555;
+  background-color: #f0f0f0;
+}
+
+/* Mobil uyum */
+@media (max-width: 600px) {
+  .poll-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .poll-item button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .poll-title {
+    flex-direction: row;
+    flex-wrap: wrap;
+    word-break: break-word;
+  }
+
+  .poll-title a {
+    flex: 1 1 100%;
+  }
+}

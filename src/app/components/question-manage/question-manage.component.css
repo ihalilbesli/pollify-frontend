@@ -1,0 +1,126 @@
+.question-manage-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.question-manage-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.error-message {
+  color: #d9534f;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.add-question-form label {
+  display: block;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+.add-question-form input,
+.add-question-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.add-question-form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.add-question-form button:hover {
+  background-color: #0056b3;
+}
+
+.question-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.question-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.question-item span {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.action-buttons {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.action-buttons button,
+.action-buttons a {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+
+.action-buttons button {
+  background-color: #28a745;
+}
+
+.action-buttons button:hover {
+  background-color: #218838;
+}
+
+.action-buttons a {
+  background-color: #17a2b8;
+}
+
+.action-buttons a:hover {
+  background-color: #117a8b;
+}
+
+/* Mobil uyum */
+@media (max-width: 600px) {
+  .action-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .add-question-form input,
+  .add-question-form select {
+    font-size: 16px;
+  }
+
+  .add-question-form button {
+    width: 100%;
+  }
+}

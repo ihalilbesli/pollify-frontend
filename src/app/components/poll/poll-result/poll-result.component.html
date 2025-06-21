@@ -1,0 +1,28 @@
+<div *ngIf="isLoading" class="loading">
+  <i class="fas fa-spinner fa-spin"></i> Yükleniyor...
+</div>
+
+<div *ngIf="errorMessage" class="error-message">
+  <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+</div>
+
+<div *ngIf="pollResult && !isLoading" class="poll-result-container">
+  <h2><i class="fas fa-chart-pie"></i> {{ pollResult.title }}</h2>
+  <p class="description"><i class="fas fa-align-left"></i> {{ pollResult.description }}</p>
+
+  <div *ngFor="let question of pollResult.questions" class="question-block">
+    <h3><i class="fas fa-question-circle"></i> {{ question.text }}</h3>
+    <ul class="option-list">
+      <li *ngFor="let option of question.options">
+        <div class="option-text">{{ option.text }}</div>
+        <div class="vote-bar">
+          <div class="bar-fill" [style.width.%]="option.percentage"></div>
+        </div>
+        <div class="vote-info">
+          {{ option.voteCount }} oy (%{{ option.percentage | number: '1.0-1' }})
+        </div>
+      </li>
+    </ul>
+    <p class="total-votes">Toplam Oy: {{ question.totalVotes }}</p>
+  </div>
+</div>

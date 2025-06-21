@@ -1,0 +1,56 @@
+<div class="question-manage-container">
+  <h2>
+    <i class="fas fa-tasks"></i> Soru Yönetimi
+  </h2>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <i class="fas fa-exclamation-triangle"></i> {{ errorMessage }}
+  </div>
+
+  <div class="add-question-form" *ngIf="!editedQuestion">
+    <label for="questionText">
+      <i class="fas fa-question-circle"></i> Soru Metni
+    </label>
+    <input id="questionText" type="text" placeholder="Yeni soru metni" [(ngModel)]="newQuestionText" />
+
+    <label for="questionType">
+      <i class="fas fa-list"></i> Soru Tipi
+    </label>
+    <select id="questionType" [(ngModel)]="newQuestionType">
+      <option value="SINGLE_CHOICE">Tekli Seçim</option>
+      <option value="MULTIPLE_CHOICE">Çoklu Seçim</option>
+    </select>
+
+    <button (click)="addQuestion()">
+      <i class="fas fa-plus-circle"></i> Soru Ekle
+    </button>
+  </div>
+
+  <ul class="question-list">
+    <li *ngFor="let question of questions" class="question-item">
+      <div *ngIf="editedQuestion?.id !== question.id; else editTemplate">
+        <span>
+          <i class="fas fa-chevron-right"></i> {{ question.text }} ({{ question.type }})
+        </span>
+        <div class="action-buttons">
+          <button (click)="startEdit(question)">Düzenle</button>
+          <a [routerLink]="['/question', question.id, 'options']" class="manage-options-link">
+            Seçenekleri Yönet
+          </a>
+        </div>
+      </div>
+
+      <ng-template #editTemplate>
+        <input *ngIf="editedQuestion" [(ngModel)]="editedQuestion.text" /> <select *ngIf="editedQuestion"
+          [(ngModel)]="editedQuestion.type">
+          <option value="SINGLE_CHOICE">Tekli Seçim</option>
+          <option value="MULTIPLE_CHOICE">Çoklu Seçim</option>
+        </select>
+        <div class="action-buttons">
+          <button (click)="saveEdit()">Kaydet</button>
+          <button (click)="cancelEdit()">İptal</button>
+        </div>
+      </ng-template>
+    </li>
+  </ul>
+</div>

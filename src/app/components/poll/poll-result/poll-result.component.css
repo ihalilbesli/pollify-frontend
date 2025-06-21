@@ -1,0 +1,129 @@
+.poll-result-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.poll-result-container h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.poll-result-container .description {
+  color: #555;
+  font-size: 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.question-block {
+  margin-bottom: 30px;
+}
+
+.question-block h3 {
+  font-size: 20px;
+  color: #222;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.option-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.option-list li {
+  margin-bottom: 14px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f8f8f8;
+}
+
+.option-text {
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.vote-bar {
+  background-color: #e0e0e0;
+  height: 10px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.bar-fill {
+  height: 100%;
+  background-color: #17a2b8;
+  border-radius: 6px;
+  transition: width 0.3s ease-in-out;
+}
+
+.vote-info {
+  font-size: 14px;
+  color: #555;
+}
+
+.total-votes {
+  font-weight: bold;
+  margin-top: 8px;
+  color: #333;
+}
+
+/* Yükleniyor ve hata stilleri */
+.loading,
+.error-message {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.loading {
+  background-color: #f0f0f0;
+  color: #555;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #d9534f;
+}
+
+/* Mobil uyum */
+@media (max-width: 600px) {
+  .poll-result-container {
+    padding: 16px;
+  }
+
+  .option-list li {
+    padding: 8px;
+  }
+
+  .vote-info {
+    font-size: 13px;
+  }
+
+  .description, .total-votes {
+    font-size: 15px;
+  }
+}

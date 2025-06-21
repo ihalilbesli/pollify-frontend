@@ -1,0 +1,114 @@
+.poll-detail-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.poll-detail-container h2 {
+  font-size: 24px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.poll-detail-container .description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.poll-info-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+.poll-info-list li {
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #444;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.warning-message,
+.info-message,
+.error-message {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  color: #856404;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.info-message {
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+  color: #0c5460;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.loading-message {
+  text-align: center;
+  color: #555;
+  font-size: 16px;
+  margin-top: 30px;
+}
+
+button {
+  padding: 10px 18px;
+  font-size: 16px;
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:disabled {
+  background-color: #a0cfd8;
+  cursor: not-allowed;
+}
+
+button:hover:enabled {
+  background-color: #138496;
+}
+
+/* Mobil uyum */
+@media (max-width: 600px) {
+  .poll-detail-container {
+    padding: 16px;
+  }
+
+  .poll-detail-container h2 {
+    font-size: 20px;
+  }
+
+  .poll-info-list li {
+    font-size: 14px;
+  }
+
+  button {
+    width: 100%;
+  }
+}

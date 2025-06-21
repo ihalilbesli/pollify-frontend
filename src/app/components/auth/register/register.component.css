@@ -1,0 +1,122 @@
+/* Genel kutu yapısı */
+.register-container {
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.register-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 24px;
+}
+
+/* Input grubu */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #444;
+}
+
+/* İkonlu input yapısı */
+.input-icon-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: border 0.3s;
+}
+
+.input-icon-wrapper i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.input-icon-wrapper input {
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  font-size: 16px;
+}
+
+/* Şifreyi göster/gizle butonu */
+.toggle-password {
+  cursor: pointer;
+  color: #888;
+  margin-left: 8px;
+}
+
+/* Hata mesajı */
+.error {
+  color: #d32f2f;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* Başarı mesajı */
+.success {
+  color: #2e7d32;
+  background-color: #e8f5e9;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 12px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Kayıt Ol butonu */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+button[type="submit"]:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+/* Mobil uyum */
+@media (max-width: 500px) {
+  .register-container {
+    margin: 30px 20px;
+    padding: 20px;
+  }
+
+  .input-icon-wrapper {
+    padding: 8px 10px;
+  }
+
+  .input-icon-wrapper input {
+    font-size: 14px;
+  }
+
+  button[type="submit"] {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

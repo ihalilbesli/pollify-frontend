@@ -1,0 +1,50 @@
+<div *ngIf="poll; else loadingOrError" class="poll-solve-container">
+  <h2>
+    <i class="fas fa-poll"></i> {{ poll.title }}
+  </h2>
+  <p>
+    <i class="fas fa-align-left"></i> {{ poll.description }}
+  </p>
+
+  <form (ngSubmit)="submitVotes()">
+    <div *ngFor="let question of poll.questions" class="question-block">
+      <h4>
+        <i class="fas fa-question-circle"></i> {{ question.text }}
+      </h4>
+
+      <div *ngFor="let option of question.options" class="option-block">
+        <label>
+          <input
+            type="{{ question.type === 'SINGLE_CHOICE' ? 'radio' : 'checkbox' }}"
+            name="question-{{ question.id }}"
+            [value]="option.id"
+            (change)="onOptionSelect(question, option.id, $event)"
+            [checked]="
+              selectedOptions.get(question.id)?.includes(option.id) || false
+            "
+          />
+          <i class="fas fa-circle"></i> {{ option.text }}
+        </label>
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="error-message">
+      <i class="fas fa-exclamation-triangle"></i> {{ errorMessage }}
+    </div>
+
+    <button type="submit" [disabled]="poll.onlyLoggedUsersCanVote && !isLoggedIn">
+      <i class="fas fa-check"></i> Oy Ver
+    </button>
+  </form>
+</div>
+
+<ng-template #loadingOrError>
+  <div *ngIf="errorMessage; else loading">
+    <p class="error-message">
+      <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+    </p>
+  </div>
+  <ng-template #loading>
+    <p><i class="fas fa-spinner fa-spin"></i> Yükleniyor...</p>
+  </ng-template>
+</ng-template>
