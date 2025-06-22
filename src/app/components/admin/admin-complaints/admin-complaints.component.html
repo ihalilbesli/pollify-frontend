@@ -1,0 +1,39 @@
+<div class="admin-complaint-container">
+    <h2>Şikayet Yönetimi (Admin)</h2>
+
+    <div *ngIf="complaints.length === 0">Hiç şikayet bulunamadı.</div>
+
+    <ul class="admin-complaint-list">
+        <li *ngFor="let c of complaints">
+            <div><strong>Kullanıcı:</strong> {{ c.user?.email || 'Bilinmiyor' }}</div>
+            <div><strong>Konu:</strong> {{ c.subject }}</div>
+            <div><strong>Açıklama:</strong> {{ c.description }}</div>
+
+            <div><strong>Durum:</strong>
+                <select class="form-select" [(ngModel)]="c.status">
+                    <option [value]="'BEKLEMEDE'">Beklemede</option>
+                    <option [value]="'ISLEMDE'">İşlemde</option>
+                    <option [value]="'COZULDU'">Çözüldü</option>
+                </select>
+            </div>
+
+            <div><strong>Admin Notu:</strong>
+                <textarea class="form-textarea" [(ngModel)]="c.adminNote" placeholder="Açıklama yazın..."></textarea>
+                <div *ngIf="c.status === 'COZULDU' && (!c.adminNote || c.adminNote.trim() === '')"
+                    class="error-message">
+                    Not girmeden "Çözüldü" olarak işaretleyemezsiniz.
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button [disabled]="c.status === 'COZULDU' && (!c.adminNote || c.adminNote.trim() === '')"
+                    (click)="updateComplaintAsAdmin(c)">
+                    <i class="fas fa-save"></i> Güncelle
+                </button>
+                <button (click)="deleteComplaint(c.id!)">
+                    <i class="fas fa-trash"></i> Sil
+                </button>
+            </div>
+        </li>
+    </ul>
+</div>

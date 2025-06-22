@@ -24,4 +24,17 @@ export class UserService {
       headers: this.getHeaders()
     });
   }
+  //  Tüm kullanıcıları getir (Admin)
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/admin/users`, {
+      headers: this.getHeaders()
+    });
+  }
+
+  //  Kullanıcı sil (Admin)
+  deleteUser(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/admin/users/${id}`, {
+      headers: this.getHeaders()
+    });
+  }
 }

@@ -14,6 +14,11 @@ import { PollResultComponent } from './components/poll/poll-result/poll-result.c
 import { PollJoinedComponent } from './components/poll/poll-joined/poll-joined.component';
 import { roleGuard } from './guards/role.guard';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
+import { AdminUserComponent } from './components/admin/admin-user/admin-user.component';
+import { AdminPollsComponent } from './components/admin/admin-polls/admin-polls.component';
+import { ComplaintComponent } from './components/complaint/complaint.component';
+import { AdminComplaintsComponent } from './components/admin/admin-complaints/admin-complaints.component';
+import { AdminAccesLogComponent } from './components/admin/admin-acces-log/admin-acces-log.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -29,44 +34,70 @@ export const routes: Routes = [
     },
     {
         path: 'poll/:id/solve',
-        component: PollSolveComponent,
-        canActivate: [roleGuard(['USER', 'ADMIN'])]
+        component: PollSolveComponent
+
     },
     {
         path: 'poll-create',
         component: PollCreateComponent,
-        canActivate: [roleGuard(['USER', 'ADMIN'])]
+        canActivate: [roleGuard(['USER'])]
+
     },
     {
         path: 'poll/:pollId/questions',
-        component: QuestionManageComponent, canActivate: [roleGuard(['USER', 'ADMIN'])]
+        component: QuestionManageComponent, canActivate: [roleGuard(['USER'])]
     },
     {
         path: 'question/:questionId/options',
         component: OptionManageComponent,
-        canActivate: [roleGuard(['USER', 'ADMIN'])]
+        canActivate: [roleGuard(['USER'])]
     },
     {
         path: 'my-polls', component: MyPoolsComponent,
-        canActivate: [roleGuard(['USER', 'ADMIN'])]
+        canActivate: [roleGuard(['USER'])]
     },
     {
         path: 'poll-edit/:id', component: PollEditComponent,
-        canActivate: [roleGuard(['USER', 'ADMIN'])]
+        canActivate: [roleGuard(['USER'])]
     },
     {
         path: 'poll-results/:pollId',
         component: PollResultComponent,
-        canActivate: [roleGuard(['USER', 'ADMIN'])]
+
     },
     {
         path: 'joined-polls', component: PollJoinedComponent,
-        canActivate: [roleGuard(['USER', 'ADMIN'])]
+        canActivate: [roleGuard(['USER'])]
     },
     {
         path: 'admin',
         component: AdminDashboardComponent,
         canActivate: [roleGuard(['ADMIN'])]
     },
-    { path: '**', redirectTo: '' },
+    {
+        path: 'admin-users',
+        component: AdminUserComponent,
+        canActivate: [roleGuard(['ADMIN'])]
+    },
+    {
+        path: 'admin-polls',
+        component: AdminPollsComponent,
+        canActivate: [roleGuard(['ADMIN'])]
+    },
+    {
+        path: 'complaint-create',
+        component: ComplaintComponent,
+        canActivate: [roleGuard(['USER'])]
+    },
+    {
+        path: 'admin-complaints',
+        component: AdminComplaintsComponent,
+        canActivate: [roleGuard(['ADMIN'])]
+    },
+    {
+        path: 'admin-acces-log',
+        component: AdminAccesLogComponent,
+        canActivate: [roleGuard(['ADMIN'])]
+    },
+
 ];

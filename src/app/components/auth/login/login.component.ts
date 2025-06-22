@@ -22,24 +22,32 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  login() {
-    const credentials: AuthRequest = {
-      email: this.email,
-      password: this.password,
-    };
+ login() {
+  const credentials: AuthRequest = {
+    email: this.email,
+    password: this.password,
+  };
 
-    this.authService.login(credentials).subscribe({
-      next: (response: AuthResponse) => {
-        localStorage.setItem('token', response.token);
-        this.errorMessage = '';
-        this.router.navigate(['/']);
-      },
-      error: (err) => {
-        this.errorMessage = 'Email veya şifre hatalı!';
-        console.error(err);
-      },
-    });
-  }
+  this.authService.login(credentials).subscribe({
+    next: (response: AuthResponse) => {
+      localStorage.setItem('token', response.token);
+      this.errorMessage = '';
+
+      const role = this.authService.getUserRole();
+
+      if (role === 'ADMIN') {
+        this.router.navigate(['/admin']); 
+      } else {
+        this.router.navigate(['/']); 
+      }
+    },
+    error: (err) => {
+      this.errorMessage = 'Email veya şifre hatalı!';
+      console.error(err);
+    },
+  });
+}
+
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;

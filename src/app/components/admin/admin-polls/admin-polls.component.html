@@ -1,0 +1,35 @@
+<div class="admin-polls-container">
+    <h2><i class="fas fa-poll"></i> Anket Listesi</h2>
+
+    <table class="poll-table" *ngIf="polls.length > 0; else noPolls">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Başlık</th>
+                <th>Açıklama</th>
+                <th>Oluşturulma</th>
+                <th>Bitiş</th>
+                <th>Durum</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let poll of polls">
+                <td>{{ poll.id }}</td>
+                <td>{{ poll.title }}</td>
+                <td>{{ poll.description }}</td>
+                <td>{{ poll.createdAt | date: 'short' }}</td>
+                <td>{{ poll.active ? 'Aktif' : 'Pasif' }}</td>
+                <td>
+                    <button (click)="deletePoll(poll.id)">
+                        <i class="fas fa-trash-alt"></i> Sil
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ng-template #noPolls>
+        <p>Henüz hiç anket yok.</p>
+    </ng-template>
+</div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/service-auth/auth.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -14,9 +14,24 @@ export class NavbarComponent implements OnInit {
   showDropdown = false;
   currentTime: string = '';
 
-  constructor(public authService: AuthService) {}
+  userRole: string | null = null;
+
+  constructor(
+    public authService: AuthService,
+    private router: Router) { }
+
+  goHome() {
+    const role = this.authService.getUserRole();
+    console.log(role)
+    if (role === 'ADMIN') {
+      this.router.navigate(['/admin']);
+    } else {
+      this.router.navigate(['/']);
+    }
+  }
 
   ngOnInit() {
+    this.userRole = this.authService.getUserRole(); 
     this.updateTime();
     setInterval(() => this.updateTime(), 1000);
   }

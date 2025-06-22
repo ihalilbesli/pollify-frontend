@@ -1,0 +1,78 @@
+<div class="access-log-container">
+  <h2><i class="fas fa-clipboard-list"></i> Erişim Kayıtları (Admin)</h2>
+
+  <!-- Filtre Alanı -->
+  <div class="filter-section">
+    <label for="filterType"><i class="fas fa-filter"></i> Filtre Türü:</label>
+    <select id="filterType" [(ngModel)]="filterType">
+      <option value="all">Tümü</option>
+      <option value="email">Email</option>
+      <option value="role">Rol</option>
+      <option value="status">Durum</option>
+      <option value="period">Zaman (day/week/month/year)</option>
+    </select>
+
+    <!-- Filtre Değer Alanı -->
+    <ng-container [ngSwitch]="filterType">
+
+      <input *ngSwitchCase="'email'" type="text" [(ngModel)]="filterValue" placeholder="Email girin..." />
+
+      <select *ngSwitchCase="'role'" [(ngModel)]="filterValue">
+        <option value="">Rol Seçin</option>
+        <option *ngFor="let r of roleOptions" [value]="r.value">{{ r.label }}</option>
+      </select>
+
+      <select *ngSwitchCase="'status'" [(ngModel)]="filterValue">
+        <option value="">Durum Seçin</option>
+        <option *ngFor="let s of statusOptions" [value]="s">{{ s }}</option>
+      </select>
+
+      <select *ngSwitchCase="'period'" [(ngModel)]="filterValue">
+        <option value="">Zaman Aralığı Seçin</option>
+        <option *ngFor="let p of periodOptions" [value]="p">{{ p }}</option>
+      </select>
+
+    </ng-container>
+
+    <button (click)="applyFilter()">
+      <i class="fas fa-search"></i> Filtrele
+    </button>
+    <button (click)="clearFilter()">
+      <i class="fas fa-times-circle"></i> Temizle
+    </button>
+  </div>
+
+  <!-- Kayıtlar -->
+  <div *ngIf="logs.length === 0" class="no-results">
+    <i class="fas fa-exclamation-circle"></i> Hiç kayıt bulunamadı.
+  </div>
+
+  <table class="access-log-table" *ngIf="logs.length > 0">
+    <thead>
+      <tr>
+        <th><i class="fas fa-calendar-alt"></i> Tarih</th>
+        <th><i class="fas fa-envelope"></i> Email</th>
+        <th><i class="fas fa-user-shield"></i> Rol</th>
+        <th><i class="fas fa-link"></i> Endpoint</th>
+        <th><i class="fas fa-code"></i> Metot</th>
+        <th><i class="fas fa-database"></i> Entity</th>
+        <th><i class="fas fa-cogs"></i> İşlem</th>
+        <th><i class="fas fa-check-circle"></i> Durum</th>
+        <th><i class="fas fa-bug"></i> Hata</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let log of logs">
+        <td>{{ log.timestamp | date: 'dd.MM.yyyy HH:mm' }}</td>
+        <td>{{ log.userEmail }}</td>
+        <td>{{ log.role }}</td>
+        <td>{{ log.endpoint }}</td>
+        <td>{{ log.method }}</td>
+        <td>{{ log.entity }}</td>
+        <td>{{ log.actionType }}</td>
+        <td [ngClass]="log.status === 'BAŞARILI' ? 'success' : 'error'">{{ log.status }}</td>
+        <td>{{ log.errorMessage || '-' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

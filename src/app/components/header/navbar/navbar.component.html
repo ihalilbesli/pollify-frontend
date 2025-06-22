@@ -1,5 +1,5 @@
 <nav class="navbar">
-  <a routerLink="/" class="logo">
+  <a (click)="goHome()" class="logo">
     <i class="fas fa-poll"></i> Pollify
   </a>
 
@@ -24,9 +24,15 @@
 
       <ul class="dropdown-menu" *ngIf="showDropdown">
         <li><a routerLink="/profile" (click)="showDropdown = false">Profil Bilgilerim</a></li>
-        <li><a routerLink="/poll-create" (click)="showDropdown = false">Anket Oluştur</a></li>
-        <li><a routerLink="/my-polls" (click)="showDropdown = false">Anketlerim</a></li> 
-        <li><a routerLink="/joined-polls" (click)="showDropdown = false">Katıldığım Anketler</a></li>
+
+        <!-- Sadece ADMIN dışı roller için göster -->
+        <ng-container *ngIf="userRole !== 'ADMIN'">
+          <li><a routerLink="/poll-create" (click)="showDropdown = false">Anket Oluştur</a></li>
+          <li><a routerLink="/my-polls" (click)="showDropdown = false">Anketlerim</a></li>
+          <li><a routerLink="/joined-polls" (click)="showDropdown = false">Katıldığım Anketler</a></li>
+          <li><a routerLink="/complaint-create" (click)="showDropdown = false">Dilek ve Şikayetlerim</a></li>
+        </ng-container>
+
         <li><a href="#" (click)="logout()">Çıkış Yap</a></li>
       </ul>
     </ng-container>
